@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | BlogDev</title>
+    <link rel="icon" href="{% static 'images/logo/logo_1.png'%}">
+    <!-- font-awesome cdns -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <!-- google font cdn -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+    <div class="register-container">
+        <div class="left-block">
+
+        </div>
+        <div class="right-block">
+            <div class="back-home">
+                <button><a href="{% url 'home' %}">Back To Home</a></button>
+            </div>
+            <div class="heading">
+                <h2>Create Account</h2>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="first-block">
+                    <p>Full Name </p>
+                    <div class="fname-lname-block">
+                        <div class="fname-block">
+                            <input type="text" name="fname" class="fname-field" placeholder="first name" value="{{fname}}"
+                                required />
+                        </div>
+                        <div class="lname-block">
+                            <input type="text" name="lname" class="lname-field" placeholder="last name" value="{{lname}}"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <div class="second-block">
+                    <p>Contact Details</p>
+                    <div class="email-number-city-block">
+                        <div class="email-block">
+                            <input type="email" name="email" class="email-field" placeholder="Email" value="{{email}}"
+                                required />
+                        </div>
+                        <div class="number-block">
+                            <input type="number" name="number" class="number-field" placeholder="Mobile Number"
+                                value="{{number}}" required />
+                        </div>
+                        <div class="city-block">
+                            <input type="text" name="city" class="city-field" placeholder="city" value="{{city}}"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <div class="third-block">
+                    <p>Login Details </p>
+                    <div class="username-password-vpassword-block">
+                        <div class="username-block">
+                            <input type="text" name="username" class="username-field" placeholder="Crete Username"
+                                value="{{username}}" required />
+                        </div>
+                        <div class="password-block">
+                            <input type="password" name="password" class="password-field" placeholder="Create Password"
+                                required />
+                        </div>
+                        <div class="vpassword-block">
+                            <input type="password" name="vpassword" class="v-password-field" placeholder="Verify Password"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-btn">
+                    <button type="submit">Create Account</button>
+                </div>
+            </form>
+            <div class="login-container">
+                <button><a href="{% url 'login'%}">Login</a></button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  {% if messages %}
+            {% for message in messages %}
+                swal('{{message}}', "{{message.tag}}");
+            {% endfor %}
+    {% endif %}
+</script>
+
+</html>

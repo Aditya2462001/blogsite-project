@@ -1,0 +1,208 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body
+{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background:url(../images/back_2.jpg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif; 
+}
+.conatiner
+{
+    width: 800px;
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.836);
+    backdrop-filter: 10px;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.2);
+}
+.left-block
+{
+    width: 50%;
+    height: 100%;
+    background:url(../images/logo/login_2.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-right: 1px solid #11E619;
+}
+.right-block
+{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.right-block .info-block
+{
+    width: 80%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.right-block .info-block h2
+{
+    padding: 30px 0px;
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+
+}
+.info-block .username-block
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgba(59, 59, 59, 0.205);
+    overflow: hidden;
+}
+.info-block .username-block p 
+{
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #11E619;
+}
+.info-block .username-block input
+{
+    height: 35px;
+    border: none;
+    padding-left: 2px;
+    padding-right: 20px;
+    outline: none;
+    font-size: 15px;
+    background-color: transparent;
+}
+.info-block .password_block
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(59, 59, 59, 0.205);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.info-block .password_block p 
+{
+    font-weight: bold;
+    padding-left: 15px;
+    padding-right: 10px;
+    color: #11E619;
+
+}
+.info-block .password_block input
+{
+    height: 35px;
+    border: none;
+    padding-left: 2px;
+    padding-right: 20px;
+    outline: none;
+    font-size: 15px;
+    background-color: transparent;
+
+}
+.info-block .submit-btn
+{
+    margin: 30px 0px;
+    display: flex;
+    justify-content: center;
+}
+.info-block .submit-btn button
+{
+    width: 80%;
+    height: 35px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    transition: 0.5s ;
+}
+.info-block .submit-btn button:hover
+{
+    transform: scale(1.05);
+    color: rgb(65, 240, 65);
+
+}
+.reset p 
+{
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+.reset p a
+{
+    color: green;
+}
+.already-register-container
+{
+    position: absolute;
+    bottom: 10px;
+    right: 15%;
+}
+.already-register-container a
+{
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 12px;
+    transition: all 0.5s ;
+    color: green;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: 1px solid green;
+}
+.already-register-container a:hover
+{
+    color: red;
+    border-color: red;
+
+}
+.go-back
+{
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+}
+.go-back p a
+{
+    font-size: 12px;
+    text-decoration: none;
+    border: 1px solid black;
+    background: white;
+    color: black;
+    padding: 2px 10px;
+    transition: all 0.5s;
+
+}
+.go-back p a:hover
+{
+    color: green;
+    border-color: green;
+}

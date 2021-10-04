@@ -1,0 +1,73 @@
+{% extends 'user_panal.html' %}
+{% load static %}
+
+{% block title %}
+    Posts | Adi blogs
+{% endblock title %}
+
+{% block right-block %}
+ <h2>All Posts</h2>
+ <div class="all-posts">
+     {% for post in posts reversed %}
+       <div class="post">
+           {% if post.image %}
+           <div class="post-image">
+                   <img src="{{post.image.url}}" alt="post_img">
+           </div>
+            {% else %}
+            <div class="post-image">
+                <img src="{%static 'images/post/post.jpg' %}" alt="post_img">
+            </div>
+           {% endif %}
+           <div class="post_info">
+           <div class="title-date-block">
+               <h4> <a href="/post/{{post.slug}}" style="text-decoration: none;color:#000;">{{post.title}}</a></h4>
+               <span>{{post.time_date}}</span>
+           </div>
+           <h6>{{post.subtitle}}</h6>
+           <div class="content">{{post.post}}</div>
+           <div class="post-bottom-data">
+               <p>Categories : 
+               {% for category in post.category.all %}
+                  <strong>{{category.title}}</strong> 
+               {% endfor %}</p>
+               <button class="del_btn" value="{{post.id}}">Delete Post</button>
+               <button class="edit_btn"><a href="/edit_post/{{post.id}}">Edit Post</a></button>
+               <button class="edit_btn"><a href="/post/{{post.slug}}">View Post</a></button>
+           </div>
+        </div>
+       </div>
+     {% endfor %}
+     <div class="delete_section">
+        
+     </div>
+
+
+ </div>
+ <script>
+     const del_btn = document.querySelectorAll('.del_btn');
+     const delete_div = document.querySelector('.delete_section');
+     del_btn.forEach((del)=>
+     {
+          del.addEventListener("click", (e) => {
+             p = ` <div class="head-sec">
+                   <p>You want to delete the post</p>
+               </div>
+               <div class="del_sec">
+                     <button> <a href="/delete_post/${e.target.value}" >delete</a></button>
+                     <button class="cancel_btn">Cancel</button>
+               </div>` ;
+             delete_div.innerHTML = p;
+             delete_div.style.transform = 'translate(-50%,-50%) scale(1)';
+             const cancel_btn = document.querySelector('.cancel_btn');
+             cancel_btn.addEventListener("click", () => {
+                 delete_div.style.transform = 'translate(-50%,-50%) scale(0)';
+             })
+         });
+
+     })
+
+     
+    
+ </script>
+{% endblock right-block %}

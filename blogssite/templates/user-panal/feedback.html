@@ -1,0 +1,42 @@
+{% extends 'user_panal.html' %}
+{% load static %}
+{% block title %}Dev Blog | Feedback {% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+{% endblock css%}
+
+{% block right-block %}
+    <h2>Feedback form</h2>
+<div class="feedback-container">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="input__block">
+            <label><strong>Rate Us : </strong></label>
+            <div class="range__block">
+                <p class="min_range"> 1 <i class="fas fa-star"></i> </p>
+                <input type="range" name="rate" class="range" min="1" value="1" max="5">
+                <p class="max_range"><i class="fas fa-star"></i> 5</p>
+            </div>
+        </div>
+        <div class="input__block">
+            <label ><strong>Feedback :</strong></label>
+            <textarea name="feedback" id="feedback"></textarea>
+        </div>
+        <div class="btn-container">
+            <button type="submit">Feedback</button>
+        </div>
+    </form>
+</div>
+<script>
+    const range = document.querySelector('.range');
+    const min_range = document.querySelector('.min_range');
+
+    range.addEventListener('change',() =>
+    {
+        // console.log(range.value);
+        min_range.innerHTML = `${range.value} <i class="fas fa-star"></i>` ;
+    });
+
+</script>
+{% endblock right-block %}

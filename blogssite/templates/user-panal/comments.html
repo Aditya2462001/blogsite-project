@@ -1,0 +1,87 @@
+{% extends 'user_panal.html' %}
+{% load static %}
+
+{% block title %}Dev blog |comments{% endblock title %}
+
+{% block css %} 
+ <link rel="stylesheet" href="{% static 'css/comment.css' %}">
+{% endblock css %}
+
+{% block right-block %}
+<h2>Comments</h2>
+<div class="comment-section">
+    {% for post in posts reversed %}
+           <div class="comments-post">
+               <div class="title-btn-container">
+                   <p><strong><a href="/get_comments/{{post.id}}">{{post.title}}</a></strong></p>
+                   <button><a href="/get_comments/{{post.id}}">get Comments</a></button>
+               </div>
+               {% if comments%}
+               {% for comment in comments reversed %}
+                        {% if comment.post == post %}
+                           <div class="comment-container">
+                               <div class="comment__block">
+                                   <p><strong>{{comment.name}}</strong></p>
+                                   <p class="comment">{{comment.comment}}</p>
+                               </div>
+                               <div class="reply__model_btn">
+                                   <button class="reply__block__btn">Reply</button>
+                               </div>
+                               <!--------------------all Replays ----------------------------- -->
+
+                                <!---------- send replay section ----------------------------- -->
+                                <section class="reply_section">
+                                    <h3>Send Replay</h3>
+                                    <form action="/replay/" method="POST">
+                                        {% csrf_token %}
+                                        <input type="text" name="author" class="post_author_author" value="{{request.user}}" required>
+                                        <input type="text" name="post_id" class="post_id_input" value="{{post.id}}" required />
+                                        <input type="text" name="comment_id" class="comment_id_input" value="{{comment.id}}" required />
+                                        <textarea name="reply" placeholder="Write your replay" id="reply-input" cols="10"
+                                            rows="10"></textarea>
+                                        <div class="send__btn">
+                                            <button>send</button>
+                                        </div>
+                    
+                                    </form>
+                                </section>
+                                <!---------- send replay section ----------------------------- -->
+
+                               {% if replay %}
+                               <div class="replay__container">
+                                   <h3>Replays</h3>
+                                      {% for each in replay reversed %}
+                                          {% if each.comment == comment %}
+                                          <div class="replay__block">
+                                              <p><strong>{{each.author.fname}} {{each.author.lname}}</strong> </p>
+                                              <p style="padding-left: 10px;"> {{each.replay}}</p>
+                                          </div>
+                                          {% endif %}
+                                      {% endfor %}
+                               </div>
+                                {% endif %}
+                                <!--------------------all Replays ----------------------------- -->
+                           </div>
+                      {% endif %}
+                    {% endfor %}
+               {% endif %}
+            </div>
+    {% endfor %}
+</div>
+{% if replay %}
+<script>
+    console.log('hello world');
+    const replay__btns = document.querySelectorAll('.reply__block__btn');
+    const reply__sections = document.querySelectorAll('.reply_section');
+
+    replay__btns.forEach((btn,index) =>{
+        btn.addEventListener('click',() =>{
+            console.log('btn clicked')
+            reply__sections[index].classList.toggle('active');
+                
+        })
+    })
+
+</script>
+{% endif %}
+{% endblock right-block %}

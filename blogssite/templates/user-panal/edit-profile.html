@@ -1,0 +1,75 @@
+{% extends 'user_panal.html' %}
+{% load static %}
+{% block title %}
+Edit Profile
+{% endblock title %}
+
+{% block css %} 
+ <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+{% endblock css %}
+
+{% block right-block %}
+
+<h2>Edit Profile</h2>
+<div class="conatiner-edit">
+    <div class="image-form-block">
+        <form action="/image-update" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="image-uploblock">
+                <div class="image-block">
+                    <input type="file" accept="image/*" class="input-image" name="image" style="display: none;" />
+                    <h2 class="click-btn">+</h2>
+                    <p class="file-name">Choose the Picture</p>
+                </div>
+                {% if author.image %}
+                <img src="{{author.image.url}}" alt="" class="preview-img">
+                {% else %}
+                <img src="{% static 'images/user/user-png.png'%}" alt="" class="preview-img">
+                {% endif %}
+            </div>
+            <div class="image-button-block">
+                <button type="submit">Edit profile Picture</button>
+            </div>
+        </form>
+    </div>
+    <div class="details-block">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input__block">
+                <label for="username"><strong>  Username : </strong></label>
+                <input type="text" name="username" class="username-field" placeholder="create username"
+                    value="{{author.author}}" required />
+            </div>
+            <div class="input__block">
+                <label for="fname"><strong>  first Name : </strong></label>
+                <input type="text" name="fname" class="fname-field" placeholder="Enter your first name"
+                    value="{{author.fname}}" required />
+            </div>
+            <div class="input__block">
+                <label for="lname"><strong> Last Name : </strong></label>
+                <input type="text" name="lname" class="lname-field" placeholder="Enter your last name"
+                    value="{{author.lname}}" required />
+            </div>
+            <div class="input__block">
+                <label for="email"><strong>  Email : </strong></label>
+                <input type="email" name="email" class="email-field" placeholder="Enter your email id"
+                    value="{{author.email}}" required />
+            </div>
+            <div class="input__block">
+                <label for="city"><strong>  City : </strong></label>
+                <input type="text" name="city" class="city-field" placeholder="Enter your city" value="{{author.city}}"
+                    required />
+            </div>
+            <div class="input__block">
+                <label for="number"><strong> Mobile No. : </strong></label>
+                <input type="number" name="number" class="number-field" placeholder="Enter Mobile Number"
+                    value="{{author.number}}" required />
+            </div><br>
+            <div class="submit-btn">
+                <button type="submit"> Edit Profile </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{% static 'js/profile_edit.js' %}"></script>
+{% endblock right-block %}

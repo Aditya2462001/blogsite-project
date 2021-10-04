@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | blogDev</title>
+    <!-- font-awesome cdns -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <!-- google font cdn -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+</head>
+<body>
+    <div class="conatiner">
+        <div class="left-block">
+        </div>
+        <div class="right-block">
+            <div class="go-back">
+                <p><a href="{% url 'home'%}"> Back to Home</a></p>
+            </div>
+            <div class="info-block">
+            <form method="POST">
+                {% csrf_token %}
+                <h2>Login</h2>
+                <div class="username-block">
+                   <p><i class="fas fa-user"></i></p>
+                    <input type="text" class="username" name="username" placeholder="username" required />
+                </div><br>
+                <div class="password_block">
+                    <p><i class="fas fa-lock"></i></p>
+                    <input type="password" class="password" name="password" placeholder="password" required />
+                </div>
+                <div class="submit-btn">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+            <div class="reset">
+              <p>  <a href="#">forget password</a>/<a href="#">forget username</a></p>
+            </div>
+            <div class="already-register-container">
+                <a href="{% url 'register'%}">Create Account &#8594;</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  {% if messages %}
+            {% for message in messages %}
+                swal('{{message}}', "{{message.tag}}");
+            {% endfor %}
+    {% endif %}
+</script>
+</html>

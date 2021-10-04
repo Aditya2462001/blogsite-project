@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adi Blogs</title>
+    <!-- font-awesome cdns -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <!-- google font cdn -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon" href="{% static 'images/logo/logo_1.png'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+    <style>
+        .all_categorise
+        {
+            min-height: 100vh;
+        }
+        .category_img
+        {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .category_img img
+        {
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <div class="logo-img">
+                <img src="{% static 'images/logo/logo_1.png' %}" alt="logo">
+            </div>
+            <div class="logo-name">
+                <h2><a href="{% url 'home' %}">BlogDev</a></h2>
+            </div>
+        </div>
+            <div class="search-container">
+                <div>
+                    <input type="search" id="search__input" name="search_item" placeholder="Search Here" />
+                    <button type="submit" class="search_icon"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+    </div>
+    <div class="menu-container">
+        <div class="navigation">
+            <ul>
+                <li><a href="{% url 'home' %}"><span class="menu-icon"><i class="fas fa-home"></i></span><span
+                            class="menu-name">Home</span></a></li>
+                {% if request.user.is_active %}
+                <li><a href="{% url 'logout' %}"><span class="menu-icon">
+                            <i class="fas fa-sign-out-alt"></i></span><span class="menu-name">Logout</span></a></li>
+                <li><a href="{% url 'user_panal' %}"><span class="menu-icon"><i
+                                class="fas fa-chalkboard-teacher"></i></span><span class="menu-name">User
+                            Pannal</span></a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}"><span class="menu-icon">
+                            <i class="fas fa-sign-in-alt"></i></span><span class="menu-name">Login</span></a></li>
+                <li><a href="{% url 'register' %}"><span class="menu-icon"><i class="far fa-registered"></i></span><span
+                            class="menu-name">Register</span></a>
+                </li>
+                {% endif %}
+                <li><a href="{% url 'all_categories' %}"><span class="menu-icon"><i class="fas fa-clipboard-list"></i></span><span
+                            class="menu-name">Categories</span></a></li>
+                <li><a href="{% url 'all_posts' %}"><span class="menu-icon"><i class="fas fa-mail-bulk"></i></span><span
+                                class="menu-name">All Posts</span></a></li>
+                <li><a href="#footer"><span class="menu-icon"><i class="fas fa-address-card"></i></span><span
+                            class="menu-name">About</span></a></li>
+            </ul>
+        </div>
+        <div class="toggle active">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+    </div>
+    <section class="all_categorise">
+        <h2 style=" background-color: rgb(107, 224, 40);
+    border-radius: 10px; color: #fff;
+    width: 50%;text-transform: uppercase;margin: 50px auto;padding:20px;text-align:center;margin-top:50px;">Top Categories</h2>
+    <div class="category_img">
+        <img src="{% static 'images/logo/category.svg'%}" alt="">
+    </div>
+        <div class="top-catagories">
+            {% if categories %}
+            <div id="category">
+                {% for category in categories %}
+                <a href="/category_post/{{category.title}}">
+                    <span>{{category.title}}</span>
+                    <span>{{category.title}}</span></a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+        <!-- ================================ search section =================================== -->
+    <section class="search__box__section">
+        
+    </section>
+    
+    <!-- ================================ search section =================================== -->
+    <footer class="footer" id="footer">
+        <div class="top-block">
+            <div class="about-page">
+                <h3>About Us</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quia,
+                    nesciunt quis laudantium earum
+                    fugiat explicabo ea ipsam ducimus omnis dignissimos natus voluptatem odio delectus cum sequi,
+                    dicta placeat nisi.</p>
+
+            </div>
+            <div class="category-page">
+                <h3>Categories</h3>
+                {% if categories %}
+                <ul>
+                    {% for category in categories %}
+                    {% if forloop.counter <= 5 %} <li><a href="/cate_post/{{category.title}}">
+                            <i class="fas fa-caret-right"></i> {{category.title}}</a>
+                        </li>
+                        {% endif %}
+                    
+                        {% endfor %}
+                        <li><a href="/all_categories/">
+                                <i class="fas fa-caret-right"></i> More..</a>
+                        </li>
+                </ul>
+                {% endif %}
+            </div>
+            <div class="follow-us-page">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fab fa-github-square"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-block">
+         <div class="top-btn">
+                <button><i class="fas fa-arrow-alt-circle-up"></i></button>
+            </div>
+            <p> &copy; <span class="year">2021</span> all right are reserved by <a href="#">Adicration</a></p>
+        </div>
+    </footer>
+    <!-- font awesome script cdn  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{% static 'js/base.js'%}"></script>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+    {% if messages %}
+                {% for message in messages %}
+                    swal('{{message}}', "{{message.tag}}");
+                {% endfor %}
+        {% endif %}
+    </script>
+<script>
+    const search__input = document.querySelector('#search__input');
+
+    search__input.addEventListener('input',(e) =>{
+        console.log(e.target.value);
+        $.ajax({
+            url:'/search/',
+            method:'GET',
+            data:{
+                'search':e.target.value,
+            },
+            beforeSend:() =>
+            {
+                $('.search_icon').html(`<i class="fas fa-spinner"></i>`);
+
+            },
+            success:(Response) =>{
+                $('.search_icon').html(`<i class="fas fa-search"></i>`);
+                $('.search__box__section').fadeIn(100);
+                $('.search__box__section').html(Response.data);
+
+                $('.close__btn').click(() =>{
+                    $('.search__box__section').fadeOut(500);
+
+                })
+            }
+        })
+    })
+</script>
+
+</html>

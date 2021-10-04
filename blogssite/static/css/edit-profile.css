@@ -1,0 +1,159 @@
+.conatiner-edit
+{
+    width: 100%;
+    display: flex;
+    padding: 10px 5rem;
+    /* background-color: green; */
+    font-family: 'Poppins', sans-serif; 
+}
+.image-form-block
+{
+    flex: 0.4;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.image-form-block form .image-uploblock
+{
+    width: 100%;
+    border-radius: 5px;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+
+}
+.image-form-block .preview-img
+{
+    width: 100%;
+    height: 100%;
+}
+.image-form-block .image-block
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 150px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.click-btn
+{
+    background-color: black;
+    color: #fff;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.click-btn:hover
+{
+    transform: scale(1.05);
+    box-shadow: 1px 1px 5px rgba(39, 238, 13, 0.664);
+}
+.file-name
+{
+    color: #fff;
+}
+
+.details-block
+{
+    flex: 0.5;
+    width: 100%;
+    margin-left: 1rem;
+}
+.details-block form 
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.details-block form .input__block
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.input__block label
+{
+    flex: 0.3;
+}
+.input__block input
+{
+    flex: 1;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-weight: 600;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    font-family: 'Poppins', sans-serif; 
+}
+.image-button-block
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+
+}
+.image-button-block button
+{
+    padding: 10px 3rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #000;
+    margin-left: 1rem;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif; 
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+}
+.image-button-block button:hover
+{
+    transform: scale(1.05);
+    box-shadow: 1px 1px 5px rgba(39, 238, 13, 0.664);
+
+}
+.submit-btn
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.submit-btn button
+{
+    padding: 10px 3rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #000;
+    margin-left: 1rem;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif; 
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.submit-btn button:hover
+{
+    transform: scale(1.05);
+    box-shadow: 1px 1px 5px rgba(39, 238, 13, 0.664);
+}

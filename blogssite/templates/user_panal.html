@@ -1,0 +1,107 @@
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}User Panal{% endblock title %}</title>
+    <link rel="icon" href="{% static 'images/logo/logo_1.png'%}">
+    <!-- font-awesome cdns -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <!-- google font cdn -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+    <link rel="stylesheet" href="{% static 'css/user_panal.css'%}">
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    <section class="main-body">
+        <div class="left-block">
+            <div class="left_logo">
+                <div class="logo-img">
+                    <img src="{% static 'images/logo/logo_1.png' %}" alt="">
+                </div>
+                <div class="logo-name">
+                    <h2><a href="{% url 'home' %}">BlogDev</a></h2>
+                </div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="{% url 'home' %}"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="{% url 'user_panal' %}"><i class="fas fa-user-tie"></i>Profile</a></li>
+                    <li><a href="{% url 'create_post' %}"><i class="fas fa-calendar-plus"></i>create post</a></li>
+                    <li><a href="{% url 'posts' %}"><i class="fas fa-clipboard"></i>posts</a></li>
+                    <li><a href="{% url 'comments' %}"><i class="fas fa-comments"></i>commnets</a></li>
+                    <li><a href="{% url 'edit_profile' %}"><i class="fas fa-user-edit"></i>Edit Profile</a></li>
+                    <li><a href="{% url 'feedback' %}"><i class="fas fa-comment-dots"></i>Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-block">
+         <div class="right-upper-block">
+            <div class="right__left__container">
+                <div class="avtar">
+                   {% if author.image %}
+                       <img src="{{ author.image.url }}" alt="">
+                   {% else %}
+                        <img src="{% static 'images/user/user-png.png' %}" alt="">
+                   {% endif %}
+               </div> 
+               <div class="name">
+                   <h4>Hello {{ request.user}}</h4>
+               </div>
+            </div>
+                <div class="logout-block">
+                    <button class="button"><a href="{% url 'logout' %}">Logout</a></button>
+                </div>
+            </div>
+            <div class="right__bottom_container">
+                {% block right-block %}
+                <h2>Profile</h2>
+                <section class="profile">
+                    {% if author.image %}
+                    <div class="profile-image">
+                        <img src="{{author.image.url}}" alt="">
+                    </div>
+                    {% else %}
+                    <div class="profile-image">
+                        <img src="{% static 'images/user/user-png.png'%}" alt="">
+                    </div>
+                    {% endif %}
+                    <div class="profile-info">
+                        <h4>User Details : </h4>
+                        <p>Username : <strong> {{author.author}}</strong></p>
+    
+                        <h4>Prasonal Details : </h4>
+                        <p>First Name : <strong> {{author.fname}}</strong></p>
+                        <p>Last Name : <strong> {{author.lname}}</strong></p>
+                        <h4>Contact Details : </h4>
+                        <p>Email : <strong> {{author.email}}</strong></p>
+                        <p>City : <strong> {{author.city}}</strong></p>
+                        <p>Mobile Number : <strong> {{author.number}}</strong></p>
+    
+                        <h4>Post Details : </h4>
+                        <p>All posts : <strong>{{posts}}</strong></p>
+                    </div>
+    
+    
+                </section>
+                {% endblock right-block %}
+            </div>
+          
+        </div>
+    </section>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  {% if messages %}
+            {% for message in messages %}
+                swal('{{message}}', "{{message.tag}}");
+            {% endfor %}
+    {% endif %}
+</script>
+</body>
+
+</html>

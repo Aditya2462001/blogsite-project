@@ -1,0 +1,41 @@
+{% load static %}
+        <button class="close__btn">
+            &times;
+        </button>
+        <div class="search__categories">
+                    <h2>Categories</h2>
+                    <div class="categories__result">
+                    {% if categories %}
+                    {% for category in categories %}
+                        <p>{{category.title}}</p>
+                    {% endfor %}
+                    {% else %}
+                         <h2 style="color:red">Data not Found!</h2>
+                    {% endif %}
+                    </div>
+        </div>
+        <div class="search__blog">
+            <h2>Blogs</h2>
+            <div class="blog__result">
+            {% if posts %}
+                {% for post in posts %}
+                <div class="blog_box">
+                    <div class="blog__img">
+                        {% if post.image %}
+                        <img src="{{post.image.url}}" alt="">
+                        {% else %}
+                        <img src="{% static 'images/back_1.jpg'%}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="blog__data">
+                        <a href="#">{{post.title}}</a>
+                        <a href="#">{{post.author.fname}} {{post.author.lname}}</a>
+                    </div>
+                </div>
+                {% endfor %}
+             {% else %}
+             <h2 style="color:red">Data not Found!</h2>
+            {% endif %}
+             </div>
+
+        </div>
