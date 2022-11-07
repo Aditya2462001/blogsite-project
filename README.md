@@ -1,5 +1,5 @@
 ## blogsite-project
-# url : 
+# url : https://webdev01.pythonanywhere.com/
 this is the multiuser blog site. here you can create your user account and for authentification added the email activation. here you have the personal user panal where you can handle you post and account. i gave multiple features like like, comments , frendly userface . 
 
 for clone:
